@@ -1,15 +1,31 @@
 // NavBar.jsx
 import React from 'react';
-import './NavBar.css';
+import { NavLink } from 'react-router-dom';
+import './NavBar.css'; 
 
 const NavBar = ({ isOpen }) => {
+  const sidebarClass = isOpen ? 'sidebar' : 'sidebar closed';
+
   return (
-    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-      {/* Sidebar content */}
-      <nav>
-        {/* Navigation items */}
+    <div className={sidebarClass}>
+      <div className="logo-container">
+      <img src="/images/RvnLogo.png" alt="RVNBEATS Logo" className="navbar-logo" />
+      </div>
+      <nav className="navbar">
+        <NavLink to="/dashboard" className="nav-item">
+          <i className="fa fa-home"></i>
+          Dashboard
+        </NavLink>
+        <NavLink to="/podcast" className="nav-item">
+          <i className="fa fa-podcast"></i>
+          Podcast
+        </NavLink>
+        <NavLink to="/logout" className="nav-item">
+          <i className="fa fa-sign-out-alt"></i>
+          Logout
+        </NavLink>
       </nav>
-    </aside>
+    </div>
   );
 };
 

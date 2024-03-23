@@ -1,0 +1,16 @@
+/* Landing.css */
+.landing-container {
+  height: 100vh;
+  width: 100%; 
+  background-image: url('/images/landinghome.png'); 
+  background-size: cover; 
+  background-position: right; 
+  background-repeat: no-repeat;
+}
+
+
+.logo-container img {
+  width: 120%; /* Set image width to 120% */
+  height: auto; /* Maintain aspect ratio */
+  max-width: none; /* Override any max-width */
+}

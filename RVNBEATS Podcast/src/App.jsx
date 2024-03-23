@@ -1,23 +1,22 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Header from './components/layout/Header';
+import Landing from './components/layout/pages/Landing';
+import PodcastPage from './components/layout/pages/PodcastPage';
+import LoginSignup from './components/layout/pages/LoginSignup';
 import './App.css';
-import Header from './components/layout/Header'; // Adjust the import path as needed
 
 function App() {
-  // You can include state and functions if needed for other components
-
   return (
-    <>
-      <Header /> {/* This will include your toggleable navigation sidebar */}
-      
-      {/* Below you can add the main content of your app */}
-      <main>
-        {/* Components for your main content go here */}
-        {/* This could include your homepage, your podcast display components, etc. */}
-      </main>
-      
-      {/* If you have a Footer component, include it here */}
-      {/* <Footer /> */}
-    </>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/login" element={<LoginSignup />} />
+        <Route path="/dashboard" element={<Landing />} />
+        <Route path="/podcast" element={<PodcastPage />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      </Routes>
+    </Router>
   );
 }
 
