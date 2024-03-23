@@ -1,0 +1,28 @@
+.podcast-bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../../../public/images/Podcast\ Background.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1;
+  }
+  
+  /* Adjustments for mobile view */
+  @media (max-width: 768px) {
+    .podcast-bg-container {
+      background-image: url('/images/PodcastBackgroundMobile.png');
+    }
+  }
+  
+  
+  /* Additional styles for content that goes above the background */
+  .content {
+    position: relative;
+    z-index: 1;
+    /* other styles for your content layout */
+  }
+  
