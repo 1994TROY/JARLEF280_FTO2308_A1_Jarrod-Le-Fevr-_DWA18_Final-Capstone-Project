@@ -1,6 +1,7 @@
 // PodcastPage.jsx
 import React, { useState, useEffect } from 'react';
-import './PodcastPage.css'; // Make sure the path is correct
+import Podcard from '../../common/Podcard.jsx'; 
+import './PodcastPage.css'; 
 
 const PodcastPage = () => {
   const [podcasts, setPodcasts] = useState([]);
@@ -14,17 +15,18 @@ const PodcastPage = () => {
 
   return (
     <div className="podcast-page">
+      <div className="podcast-background">
       <img src="/images/Podcast Background.png" alt="RVNBEATS Podcast Background" className="podcast-bg" />
-      <div className="content">
+      </div>
+      <div className="podcast-content">
         {podcasts.length > 0 ? (
-          podcasts.map(podcast => (
-            <div key={podcast.id} className="podcast-item">
-              <h3>{podcast.title}</h3>
-              {/* Display other podcast information here */}
-            </div>
-          ))
+          <div className="podcast-grid">
+            {podcasts.map(podcast => (
+              <Podcard key={podcast.id} podcast={podcast} />
+            ))}
+          </div>
         ) : (
-          <p>Loading podcasts...</p> // This will show while the podcasts are being fetched
+          <p>Loading podcasts...</p>
         )}
       </div>
     </div>
