@@ -1,0 +1,27 @@
+/* NavBar.css */
+.sidebar {
+    width: 350px;
+    position: fixed;
+    top: 0;
+    left: -250px; 
+    height: 100%;
+    background-image: linear-gradient(to right, #384182, #F0513A, #F79534);
+    transition: left 0.3s ease;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; 
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sidebar.open {
+    transform: translateX(0); 
+  }
+}
