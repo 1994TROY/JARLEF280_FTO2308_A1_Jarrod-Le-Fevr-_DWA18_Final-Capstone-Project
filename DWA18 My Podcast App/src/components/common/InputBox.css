@@ -1,0 +1,46 @@
+.input-container {
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .input-container label {
+    color: #757575; /* Or any color based on your design */
+    position: absolute;
+    pointer-events: none;
+    left: 20px;
+    top: 10px;
+    transition: 0.2s ease all;
+  }
+  
+  .input-container input {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #e0e0e0; /* Light grey border */
+    outline: 0;
+    padding: 15px 20px;
+    background-color: transparent;
+    color: #212121; /* Or any text color you prefer */
+    font-size: 16px;
+    transition: border-color 0.2s;
+  }
+  
+  .input-container input::placeholder {
+    color: transparent;
+  }
+  
+  .input-container input:focus {
+    padding-bottom: 14px;
+    border-bottom: 2px solid #536DFE; /* Highlighted border color */
+  }
+  
+  .input-container input:focus + label,
+  .input-container input:not(:placeholder-shown) + label {
+    top: -20px;
+    font-size: 12px;
+    color: #536DFE; /* Label color when input is focused */
+  }
+  
+  .input-container input:focus + label {
+    color: #536DFE; /* Highlighted label color */
+  }
+  

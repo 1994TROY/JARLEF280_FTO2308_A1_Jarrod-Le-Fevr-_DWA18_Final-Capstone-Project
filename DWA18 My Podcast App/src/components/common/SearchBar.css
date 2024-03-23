@@ -1,0 +1,21 @@
+/* SearchBar.css */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  
+  .search-input {
+    width: 100%; /* Adjust as per your design requirements */
+    border: 2px solid #FFC0CB; /* Light pink border as seen in the image */
+    border-radius: 20px; /* Rounded borders */
+    padding: 5px 15px; /* Space inside the search bar */
+    font-size: 16px; /* Match to your design */
+    color: #FF69B4; /* Adjust the color as per the text in the image */
+    outline: none; /* Remove the default focus highlight */
+  }
+  
+  .search-input::placeholder {
+    color: #FF69B4; /* Placeholder text color */
+  }
+  
