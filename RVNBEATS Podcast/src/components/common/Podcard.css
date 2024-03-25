@@ -6,6 +6,7 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.2s ease-in-out;
+    opacity: 80%;
   }
   
   .podcard:hover {
@@ -26,12 +27,14 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    opacity: 100%;
+    z-index: 200;
   }
   
+
   /* Responsive adjustments for mobile view */
   @media (max-width: 768px) {
     .podcast-background img {
-      /* Adjust the mobile background image */
     }
   }
   

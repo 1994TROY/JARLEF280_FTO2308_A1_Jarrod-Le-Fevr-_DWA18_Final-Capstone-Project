@@ -30,6 +30,7 @@
   width: 100%; 
   justify-content: center; 
   text-decoration: none; 
+  font-family: "Orbitron", sans-serif;
 }
 
 .nav-item i {

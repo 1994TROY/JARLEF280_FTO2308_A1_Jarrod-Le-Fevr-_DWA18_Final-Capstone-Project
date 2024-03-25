@@ -1,5 +1,6 @@
 // Podcard.jsx
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Podcard.css'; // Make sure the path is correct
 
 const genreMap = {
@@ -15,18 +16,24 @@ const genreMap = {
 };
 
 const Podcard = ({ podcast }) => {
-    // Map genre IDs to genre names
+    const navigate = useNavigate(); // Hook to navigate
     const genres = podcast.genres.map(genreId => genreMap[genreId]).join(', ');
-  
+
+    const goToPodcast = () => {
+      navigate(`/podcast/show/${podcast.id}`);
+    };
+
     return (
       <div className="podcard">
         <img src={podcast.image} alt={podcast.title} className="podcast-image" />
-        <h3>{podcast.title}</h3>
-        <p>Seasons: {podcast.seasons}</p>
-        <p>Genre: {genres}</p>
-        <button className="watch-button">WATCH</button>
+        <div className="podcast-info">
+          <h3>{podcast.title}</h3>
+          <p>Seasons: {podcast.seasons}</p>
+          <p>Genre: {genres}</p>
+          <button className="watch-button" onClick={goToPodcast}>WATCH</button>
+        </div>
       </div>
     );
-  };
-  
-  export default Podcard;
+};
+
+export default Podcard;

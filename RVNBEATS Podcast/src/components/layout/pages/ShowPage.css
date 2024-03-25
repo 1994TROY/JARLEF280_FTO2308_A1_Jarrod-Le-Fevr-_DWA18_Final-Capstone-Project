@@ -1,0 +1,79 @@
+/* ShowPage.css */
+.show-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.show-image {
+  max-width: 400px;
+  margin-right: 20px;
+}
+
+.show-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.show-content {
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.show-title {
+  font-family: "Orbitron", sans-serif;
+}
+
+.show-description {
+  margin-top: 10px;
+}
+
+.season-selector {
+  color: white;
+  font-weight: 700;
+  font-size: larger;
+  margin-top: 80px;
+}
+
+#season-dropdown {
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.season-episodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+
+@media (max-width: 1300px) {
+  .show-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .show-image-container,
+  .show-content-container {
+    flex-basis: 100%;
+  }
+
+  .show-image {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}

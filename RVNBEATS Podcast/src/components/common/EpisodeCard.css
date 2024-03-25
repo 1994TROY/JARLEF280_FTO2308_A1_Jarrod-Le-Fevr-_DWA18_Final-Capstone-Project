@@ -1,0 +1,58 @@
+/* EpisodeCard.css */
+
+.episode-card {
+    background: #000000b0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .episode-card:hover {
+    background: #757F8F;
+    font-size: 1.2rem;
+    
+  }
+  
+  .episode-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 5px;
+    text-align: left;
+    font-family: "Orbitron", sans-serif;
+  }
+  
+  .episode-description {
+    font-size: 1rem;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .audio-player-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .audio-player {
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+  }
+  
+  .audio-player.visible {
+    max-width: 100%;
+    opacity: 1;
+  }
+  
+  .player-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+  }
+  
+  .player-icon:hover {
+    transform: scale(1.1);
+  }
