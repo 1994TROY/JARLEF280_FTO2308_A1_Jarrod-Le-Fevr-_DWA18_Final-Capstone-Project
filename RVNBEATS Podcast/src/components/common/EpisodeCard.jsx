@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './EpisodeCard.css'; // Ensure the CSS file is correctly linked
-import Favicon from './Favicon'; // Import Favicon component
+import './EpisodeCard.css';
+import Favicon from './Favicon'; 
 
 const EpisodeCard = ({ episode }) => {
   const [isPlayerVisible, setIsPlayerVisible] = useState(false);

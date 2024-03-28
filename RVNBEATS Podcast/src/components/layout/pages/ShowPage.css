@@ -13,6 +13,20 @@
   margin-bottom: 20px;
 }
 
+.back-button-container {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 38px; 
+  transition: transform 0.3s ease; 
+}
+
+.back-button-container:hover {
+  transform: scale(1.2); 
+}
+
 .show-image {
   max-width: 400px;
   margin-right: 20px;
