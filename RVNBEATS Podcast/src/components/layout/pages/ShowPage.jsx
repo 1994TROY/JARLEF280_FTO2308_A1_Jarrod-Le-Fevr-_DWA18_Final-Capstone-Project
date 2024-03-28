@@ -15,22 +15,30 @@ const ShowPage = () => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://podcast-api.netlify.app/id/${id}`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
         setShowDetails(data);
-        // Set the ID of the first season if seasons are available
-        if (data.seasons?.length) {
-          setSelectedSeason(data.seasons[0].id);
+        const defaultSeason = data.seasons?.[0];
+        if (defaultSeason && defaultSeason.episodes?.length > 0) {
+          setSelectedSeason(defaultSeason);
+        } else {
+          throw new Error("Default season has no episodes.");
         }
-        setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching show details:', error);
+        console.error('Error fetching show details or no episodes:', error);
+      })
+      .finally(() => {
         setLoading(false);
       });
   }, [id]);
 
-  if (loading) {
+  if (loading || !selectedSeason) {
     return <Loader />;
   }
 
@@ -40,11 +48,13 @@ const ShowPage = () => {
 
    // Update the selected season based on dropdown change
    const handleSeasonChange = (event) => {
-    setSelectedSeason(event.target.value);
+    const seasonId = event.target.value;
+    const season = showDetails.seasons.find(s => s.id === seasonId);
+    setSelectedSeason(season); // This should set the entire season object including its episodes
   };
 
   // Find the episodes of the selected season
-  const selectedSeasonEpisodes = showDetails.seasons?.find(season => season.id === selectedSeason)?.episodes || [];
+  console.log('Selected season episodes:', selectedSeason?.episodes); // Debugging log
 
 
   return (
@@ -62,20 +72,20 @@ const ShowPage = () => {
           <div className="season-selector">
             <label htmlFor="season-dropdown">Select Season:</label>
             <select id="season-dropdown" onChange={handleSeasonChange} value={selectedSeason?.id}>
-    {showDetails.seasons.map((season) => (
-      <option key={season.id} value={season.id}>
-        {season.title || `Season ${season.number}`} {/* Display season title or 'Season X' */}
-      </option>
-    ))}
-  </select>
+  {showDetails.seasons.map((season) => (
+    <option key={season.id} value={season.id}>
+      {season.title || `Season ${season.number}`}
+    </option>
+  ))}
+</select>
           </div>
         </div>
       </div>
       <div className="season-episodes">
-        {selectedSeasonEpisodes.map((episode) => (
-          <EpisodeCard key={episode.id} episode={episode} />
-        ))}
-      </div>
+  {selectedSeason?.episodes.map((episode) => (
+    <EpisodeCard key={episode.id} episode={episode} />
+  ))}
+</div>
     </div>
   );
 };

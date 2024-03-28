@@ -33,18 +33,19 @@
 
 .show-title {
   font-family: "Orbitron", sans-serif;
+  margin-top: -10px;
 }
 
 .show-description {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .season-selector {
   color: white;
   font-weight: 700;
   font-size: larger;
-  margin-top: 80px;
-}
+  margin-top: 70px;
+  }
 
 #season-dropdown {
   padding: 10px;
@@ -75,5 +76,10 @@
   .show-image {
     margin-right: 0;
     margin-bottom: 20px;
+  }
+
+  .show-title {
+    text-align: center;
+    font-size: 40px;
   }
 }
