@@ -31,6 +31,13 @@
     z-index: 200;
   }
   
+  .seasons-badge {
+    background-color: rgba(22, 22, 22, 0.9);
+    border-radius: 20%;
+    padding: 0.25em 0.6em; /* Adjust padding to your preference */
+    display: inline-block; /* Needed to apply padding and border-radius */
+    color: white;
+  }
 
   /* Responsive adjustments for mobile view */
   @media (max-width: 768px) {

@@ -5,6 +5,7 @@ import Landing from './components/layout/pages/Landing';
 import PodcastPage from './components/layout/pages/PodcastPage';
 import LoginSignup from './components/layout/pages/LoginSignup';
 import ShowPage from './components/layout/pages/ShowPage';
+import Fav from './components/layout/pages/Fav';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/podcast" element={<PodcastPage />} />
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/podcast/show/:id" element={<ShowPage />} />
+        <Route path="/favorites" element={<Fav />} />
       </Routes>
     </Router>
   );

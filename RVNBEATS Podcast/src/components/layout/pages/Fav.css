@@ -1,0 +1,72 @@
+.favorites-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .favorites-page h1 {
+    color: #384182;
+    margin-bottom: 30px;
+  }
+  
+  .favorite-item {
+    background: #f2f2f2;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .favorite-item h3 {
+    color: #757F8F;
+    margin-bottom: 10px;
+  }
+  
+  .favorite-item button {
+    padding: 10px 20px;
+    background-color: #F0513A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .favorite-item button:hover {
+    background-color: #F79534;
+  }
+  
+  .no-favorites p {
+    color: #757F8F;
+    margin-bottom: 20px;
+  }
+  
+  .add-favorite-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #384182;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-favorite-button:hover {
+    background-color: #F79534;
+    color: white;
+  }
+  
+  .back-button-container {
+    position: fixed;
+    top: 0px;
+    left: 30px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 38px; 
+    transition: transform 0.3s ease; 
+  }
+  
+  
+  .back-button-container:hover {
+    transform: scale(1.2); 
+  }

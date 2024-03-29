@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
 import { createClient } from "@supabase/supabase-js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
 const supabaseAnonKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8"; // Use the .env file to store this key
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8";
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const LoginSignup = () => {
@@ -18,32 +20,47 @@ const LoginSignup = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     const { error } = await supabase.auth.signIn({ email, password });
-    if (error) console.error("Login error:", error.message);
-    else navigate("/dashboard");
+    if (error) {
+      toast.error("Username or password is not correct", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else navigate("/dashboard");
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signUp({ email, password });
-    if (error) console.error("Signup error:", error.message);
-    else navigate("/dashboard");
+    const { user, error } = await supabase.auth.signUp({ email, password });
+    if (error) {
+      toast.error("Please ensure Password meets correct criteria", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
+      toast.success(
+        "Thank you for signing up with RVNBEATS. Please confirm your email in order to continue the login",
+        { position: toast.POSITION.TOP_RIGHT }
+      );
+      navigate("/login"); // Redirect to login page after signup
+    }
   };
 
   const toggleForm = () => setIsLogin(!isLogin);
 
   return (
     <div className="login-signup-container">
+      <ToastContainer />
       <div className="logo-container">
         <div
           className={`form-container ${isLogin ? "" : "form-container-shift"}`}
         >
           <div className="form-header">
             <h1>{isLogin ? "Login" : "Signup"}</h1>
-            <nav>
-              <button onClick={toggleForm} className="toggle-button">
-                {isLogin ? "Need an account?" : "Have an account?"}
-              </button>
-            </nav>
+            {!isLogin && (
+              <nav>
+                <button onClick={toggleForm} className="logsign-button">
+                  Have an account?
+                </button>
+              </nav>
+            )}
           </div>
           <form
             className={`form ${isLogin ? "login" : "signup"}`}
@@ -84,6 +101,13 @@ const LoginSignup = () => {
               </button>
             </div>
           </form>
+          {isLogin && (
+            <div className="logsign-button-container">
+              <button onClick={toggleForm} className="logsign-button">
+                Need an account?
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
