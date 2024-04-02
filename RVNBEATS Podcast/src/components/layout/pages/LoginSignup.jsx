@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from '@supabase/supabase-js'; 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
+const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8";
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const LoginSignup = () => {
   const navigate = useNavigate();
@@ -16,27 +18,39 @@ const LoginSignup = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { error } = await supabase.auth.signIn({ email, password });
+    const { user, error } = await supabase.auth.signIn({ email, password });
     if (error) {
-      toast.error("Username or password is not correct", {
+      toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
-    } else navigate("/dashboard");
+    } else {
+      toast.success('Login successful', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      navigate("https://rvnbeats.netlify.app/dashboard"); // Redirect to dashboard
+    }
   };
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      return;
+    }
     const { user, error } = await supabase.auth.signUp({ email, password });
     if (error) {
-      toast.error("Please ensure Password meets correct criteria", {
+      toast.error(error.message, {
         position: toast.POSITION.TOP_RIGHT,
       });
     } else {
       toast.success(
-        "Thank you for signing up with RVNBEATS. Please confirm your email in order to continue the login",
-        { position: toast.POSITION.TOP_RIGHT }
+        "Thank you for signing up with RVNBEATS. Please confirm your email to continue.",
+        { position: toast.POSITION.TOP_RIGHT, autoClose: false }
       );
-      navigate("/login"); // Redirect to login page after signup
+      // Here you may want to handle email verification link sending if it's not handled automatically by Supabase
+      // After signup, redirect users to the login page
     }
   };
 
