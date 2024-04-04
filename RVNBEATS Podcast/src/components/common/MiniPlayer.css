@@ -1,0 +1,22 @@
+/* MiniPlayer.css */
+
+.mini-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* Ensure it's above other content */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mini-player audio {
+    width: 100%;
+  }
+  
+  .player-icon {
+    cursor: pointer;
+  }
+  

@@ -1,13 +1,13 @@
 // ShowPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate here
+import { useParams, useNavigate } from 'react-router-dom';
 import Loader from '../../common/Loader';
 import EpisodeCard from '../../common/EpisodeCard';
 import './ShowPage.css';
 
 const ShowPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate(); // Initialize navigate hook
+  const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedSeason, setSelectedSeason] = useState(null);
@@ -23,7 +23,7 @@ const ShowPage = () => {
       })
       .then(data => {
         setShowDetails(data);
-        setSelectedSeason(data.seasons?.[0]); // Set to first season by default
+        setSelectedSeason(data.seasons?.[0]); // Automatically select the first season
         setLoading(false);
       })
       .catch(error => {
@@ -32,10 +32,29 @@ const ShowPage = () => {
       });
   }, [id]);
 
-  const handleSeasonChange = (event) => {
+  const handleSeasonChange = async (event) => {
     const seasonId = event.target.value;
     const season = showDetails.seasons.find(s => s.id === seasonId);
-    setSelectedSeason(season); // This will set the entire season object including its episodes
+    
+    if (season && !season.episodes) {
+      // Fetch episodes if not already available in the season object
+      setLoading(true);
+      try {
+        const response = await fetch(`https://podcast-api.netlify.app/seasons/${seasonId}/episodes`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const episodes = await response.json();
+        setSelectedSeason({ ...season, episodes }); // Combine season info with fetched episodes
+      } catch (error) {
+        console.error('Error fetching episodes:', error);
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      // If episodes are already present, just update the selected season
+      setSelectedSeason(season);
+    }
   };
 
   return (

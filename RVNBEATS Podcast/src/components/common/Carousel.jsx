@@ -26,7 +26,7 @@ function Carousel() {
         {podcasts.map((podcast, index) => (
           <img key={index} src={podcast.image} alt={podcast.title} />
         ))}
-      </figure>
+       </figure>
       <span style={{ float: 'left' }} onClick={() => galleryspin('-')}>
         <i className="fa-regular fa-circle-left" style={{ color: '#384182' }}></i>
       </span>
@@ -38,3 +38,4 @@ function Carousel() {
 }
 
 export default Carousel;
+

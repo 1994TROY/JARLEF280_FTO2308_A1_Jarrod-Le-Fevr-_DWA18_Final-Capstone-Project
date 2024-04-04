@@ -24,7 +24,7 @@ const NavBar = ({ isOpen }) => {
   <i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
   Favorite
 </NavLink>
-        <NavLink to="/logout" className="nav-item">
+        <NavLink to="/login" className="nav-item">
           <i className="fa fa-sign-out-alt"></i>
           Logout
         </NavLink>

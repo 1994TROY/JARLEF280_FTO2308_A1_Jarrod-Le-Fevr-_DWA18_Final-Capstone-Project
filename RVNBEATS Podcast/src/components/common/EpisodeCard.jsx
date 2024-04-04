@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import './EpisodeCard.css';
+import { useAudioPlayer } from './AudioPlayerContext';
 import { createClient } from "@supabase/supabase-js";
-import likeIcon from '../../../public/icons/like.svg';
-import unlikeIcon from '../../../public/icons/unlike.svg';
+import likeIcon from '/icons/like.svg';
+import unlikeIcon from '/icons/unlike.svg';
 
 const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
-const supabaseAnonKey = "YOUR_SUPABASE_ANON_KEY";
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8";
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const EpisodeCard = ({ episode }) => {
   const [isFavorited, setIsFavorited] = useState(false);
-  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+  const { playEpisode, currentEpisode, stopEpisode } = useAudioPlayer(); 
 
   useEffect(() => {
     const checkFavoriteStatus = async () => {
       const { data, error } = await supabase
         .from("favorites")
-        .select("favoriteids")
-        .eq('id', 1); // assuming the user ID is 1
+        .select("favoritesfield")
+        .eq('id', 1);
 
       if (error) {
         console.error("Error fetching favorite status:", error);
         return;
       }
 
-      setIsFavorited(data?.favoriteids?.includes(episode.id));
+      setIsFavorited(data?.[0]?.favoritesfield?.includes(episode.id));
     };
 
     checkFavoriteStatus();
@@ -33,38 +34,44 @@ const EpisodeCard = ({ episode }) => {
   const handleFavClick = async () => {
     const updatedFavoritedStatus = !isFavorited;
     setIsFavorited(updatedFavoritedStatus);
-
-    const { data, error } = await supabase
+  
+    let { data: favData, error: favError } = await supabase
       .from("favorites")
-      .select("favoriteids")
-      .eq('id', 1).single(); // again assuming the user ID is 1
-
-    if (error) {
-      console.error("Error fetching favorites:", error);
+      .select("favoritesfield")
+      .eq('id', 1)
+      .single();
+  
+    if (favError) {
+      console.error("Error fetching favorites:", favError);
       return;
     }
-
-    let updatedFavoriteIds = data.favoriteids || [];
-
-    if (updatedFavoritedStatus) {
-      updatedFavoriteIds.push(episode.id);
-    } else {
-      updatedFavoriteIds = updatedFavoriteIds.filter(id => id !== episode.id);
+  
+    let updatedFavoriteIds = favData.favoritesfield || [];
+    if (updatedFavoritedStatus && !updatedFavoriteIds.includes(episode.id)) {
+      updatedFavoriteIds.push(episode.id); // Add episode ID if not already present
+    } else if (!updatedFavoritedStatus) {
+      updatedFavoriteIds = updatedFavoriteIds.filter(id => id !== episode.id); // Remove episode ID if un-favorited
     }
-
+  
     const { error: updateError } = await supabase
       .from("favorites")
-      .update({ favoriteids: updatedFavoriteIds })
-      .eq('id', 1); // and again assuming the user ID is 1
-
+      .update({ favoritesfield: updatedFavoriteIds })
+      .eq('id', 1);
+  
     if (updateError) {
       console.error("Error updating favorites:", updateError);
     }
   };
 
   const handleIconClick = () => {
-    setIsPlayerVisible(!isPlayerVisible);
+    if (currentEpisode && currentEpisode.id === episode.id) {
+      stopEpisode(); // Stop the episode if it is the current one
+    } else {
+      playEpisode(episode); // Play the episode if it is not the current one
+    }
   };
+
+  const isPlaying = currentEpisode && currentEpisode.id === episode.id; // Check if the current episode is playing
 
   return (
     <div className="episode-card">
@@ -77,20 +84,15 @@ const EpisodeCard = ({ episode }) => {
           className="fav-icon" 
           onClick={handleFavClick} 
         />
-        {isPlayerVisible ? (
-          <>
-            <audio controls className={`audio-player ${isPlayerVisible ? 'visible' : ''}`} autoPlay style={{ marginLeft: '15px', marginRight: '15px' }}>
-              <source src={episode.file} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-            <i className="fa-solid fa-xmark player-icon" style={{color: "#384182"}} onClick={handleIconClick}></i>
-          </>
-        ) : (
-          <i className="fa-solid fa-headphones-simple player-icon" style={{color: "#384182"}} onClick={handleIconClick}></i>
-        )}
+        <i 
+          className={`player-icon ${isPlaying ? 'fa-solid fa-xmark' : 'fa-solid fa-headphones-simple'}`}
+          style={{ color: "#384182" }} 
+          onClick={handleIconClick} // This will either play or stop the episode
+        />
       </div>
     </div>
   );
 };
 
 export default EpisodeCard;
+

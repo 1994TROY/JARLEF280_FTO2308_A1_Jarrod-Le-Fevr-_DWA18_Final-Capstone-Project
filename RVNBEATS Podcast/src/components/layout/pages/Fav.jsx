@@ -1,22 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { createClient } from "@supabase/supabase-js";
+import { Link, useNavigate } from 'react-router-dom';
 import './Fav.css';
+
+const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
+const supabaseAnonKey = "YOUR_SUPABASE_ANON_KEY"; 
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Fav = () => {
   const [favorites, setFavorites] = useState([]);
+  const navigate = useNavigate(); // useNavigate hook for navigation
 
   useEffect(() => {
-    // Fetch the favorites from local storage or a database
-    // Example: setFavorites(fetchFavoritesFromLocalStorage());
+    const fetchFavorites = async () => {
+      const { data, error } = await supabase
+        .from('favorites')
+        .select('favoritesfield')
+        .eq('id', 1);
+
+      if (error) {
+        console.error("Error fetching favorites:", error);
+        return;
+      }
+
+      if (data && data.length > 0) {
+        // Assuming favoritesfield is an array of episode IDs
+        setFavorites(data[0].favoritesfield || []);
+      }
+    };
+
+    fetchFavorites();
   }, []);
 
-  const removeFavorite = (episodeId) => {
-    // Logic to remove the episode from favorites
-    // Example: removeFavoriteFromLocalStorage(episodeId);
-    // Then update the state to reflect the change
-  };
-  const addToFavorites = (episode) => {
-    // Logic to add an episode to favorites
+  const removeFavorite = async (episodeId) => {
+    // Logic to remove the episode from favorites in Supabase
+    let updatedFavorites = favorites.filter(id => id !== episodeId);
+    const { error } = await supabase
+      .from('favorites')
+      .update({ favoritesfield: updatedFavorites })
+      .eq('id', 1);
+
+    if (error) {
+      console.error("Error removing favorite:", error);
+    } else {
+      setFavorites(updatedFavorites);
+    }
   };
 
   return (
@@ -52,6 +80,3 @@ const Fav = () => {
 };
 
 export default Fav;
-
-// You would need corresponding CSS to style your components.
-// Also, ensure to replace fetchFavoritesFromLocalStorage() and removeFavoriteFromLocalStorage() with your actual functions.
