@@ -47,6 +47,7 @@ const LoginSignup = () => {
     }
   };
 
+  
   console.log(supabase);
 console.log(supabase.auth);
 
