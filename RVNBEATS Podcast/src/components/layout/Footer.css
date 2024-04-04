@@ -3,10 +3,10 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #384182; 
+  background: #384182;
   color: white;
   padding: 10px;
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Increased depth and darkness for a more pronounced effect */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
@@ -27,12 +27,11 @@
 .footer-audio-player {
   flex-grow: 1;
 }
-  
-  .player-icon {
-    cursor: pointer;
-    padding: 5px;
-    font-size: 24px;
-    color: #F0513A;
-    margin-left: 6px;
-  }
-  
+
+.player-icon {
+  cursor: pointer;
+  padding: 5px;
+  font-size: 24px;
+  color: #f0513a;
+  margin-left: 6px;
+}

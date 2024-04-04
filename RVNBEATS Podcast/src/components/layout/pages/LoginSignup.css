@@ -1,11 +1,9 @@
-/* LoginSignup.css */
-
 .login-signup-container {
-  background-image: url('/images/LogSign_bg.png');
+  background-image: url("/images/LogSign_bg.png");
   background-size: cover;
   background-position: center;
   width: 100vw;
-  height: 100vh; 
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,13 +12,12 @@
   align-items: center;
 }
 
-
 .logsign-button {
   position: fixed;
   top: 10px;
-  right: 10px;    
-  z-index: 50000;   
-  background-color: #F79534;
+  right: 10px;
+  z-index: 50000;
+  background-color: #f79534;
   transition: background-color 0.3s, transform 0.3s;
   border: none;
   margin-top: 50px;
@@ -36,41 +33,41 @@
 
 .form-header h1 {
   font-family: "Orbitron", sans-serif;
-  color: #384182; 
+  color: #384182;
 }
 
 .input-text {
-  border: 2px solid #757F8F;
+  border: 2px solid #757f8f;
   padding: 0.75rem;
   margin-bottom: 1rem;
   width: 300px;
 }
 
 .input-text:focus {
-  border-color: #F0513A;
-  outline: none; 
+  border-color: #f0513a;
+  outline: none;
 }
 
 .submit-button {
-  background-color: #384182; 
+  background-color: #384182;
   color: white;
   padding: 0.75rem;
   margin-bottom: 1rem;
 }
 
 .submit-button:hover {
-  background-color: #F79534; 
+  background-color: #f79534;
 }
 
 .link-text {
-  color: #F0513A;
+  color: #f0513a;
   text-align: center;
   display: block;
   margin-top: 1rem;
 }
 
 .link-text:hover {
-  color: #757F8F; 
+  color: #757f8f;
 }
 
 /* Responsive adjustments for smaller screens */

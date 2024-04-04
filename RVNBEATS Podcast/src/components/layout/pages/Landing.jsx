@@ -1,6 +1,6 @@
-import React from 'react';
-import Carousel from '../../common/Carousel'; // Import the Carousel component
-import './Landing.css';
+import React from "react";
+import Carousel from "../../common/Carousel";
+import "./Landing.css";
 
 const Landing = () => {
   return (

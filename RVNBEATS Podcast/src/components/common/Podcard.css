@@ -1,47 +1,46 @@
 /* Podcard.css */
 .podcard {
-    background: white;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
-    opacity: 80%;
-  }
-  
-  .podcard:hover {
-    transform: translateY(-5px);
-  }
-  
-  .podcast-image {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .watch-button {
-    background-color: #F79534;
-    border: none;
-    padding: 10px 20px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    opacity: 100%;
-    z-index: 200;
-  }
-  
-  .seasons-badge {
-    background-color: rgba(22, 22, 22, 0.9);
-    border-radius: 20%;
-    padding: 0.25em 0.6em; /* Adjust padding to your preference */
-    display: inline-block; /* Needed to apply padding and border-radius */
-    color: white;
-  }
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+  opacity: 80%;
+}
 
-  /* Responsive adjustments for mobile view */
-  @media (max-width: 768px) {
-    .podcast-background img {
-    }
+.podcard:hover {
+  transform: translateY(-5px);
+}
+
+.podcast-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.watch-button {
+  background-color: #f79534;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  opacity: 100%;
+  z-index: 200;
+}
+
+.seasons-badge {
+  background-color: rgba(22, 22, 22, 0.9);
+  border-radius: 20%;
+  padding: 0.25em 0.6em;
+  display: inline-block;
+  color: white;
+}
+
+/* Responsive adjustments for mobile view */
+@media (max-width: 768px) {
+  .podcast-background img {
   }
-  
+}

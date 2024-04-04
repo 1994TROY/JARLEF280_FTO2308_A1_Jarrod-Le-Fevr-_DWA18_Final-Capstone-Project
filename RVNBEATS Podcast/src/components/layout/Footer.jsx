@@ -1,7 +1,7 @@
 // Footer.jsx
-import React from 'react';
-import { useAudioPlayer } from '../common/AudioPlayerContext';
-import './Footer.css';
+import React from "react";
+import { useAudioPlayer } from "../common/AudioPlayerContext";
+import "./Footer.css";
 
 const Footer = () => {
   const { audioDetails, stopEpisode } = useAudioPlayer();
@@ -22,7 +22,10 @@ const Footer = () => {
           <source src={audioDetails.episode.file} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
-        <i className="fa-solid fa-xmark player-icon" onClick={handleStopClick}></i>
+        <i
+          className="fa-solid fa-xmark player-icon"
+          onClick={handleStopClick}
+        ></i>
       </div>
     </div>
   );

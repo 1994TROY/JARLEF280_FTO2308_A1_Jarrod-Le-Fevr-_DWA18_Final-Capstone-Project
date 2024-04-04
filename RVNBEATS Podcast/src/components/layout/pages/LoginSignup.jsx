@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
-import { createClient } from '@supabase/supabase-js'; 
+import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
-const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8";
+const supabaseAnonKey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvY3FraWRjZWRodXZ0aWRoYmd0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MDk2NjEsImV4cCI6MjAyNzE4NTY2MX0.mHunkLWa7ZzYkwWDNwl2jrroKGKxt3kIh6a0Tzimfq8";
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const LoginSignup = () => {
@@ -40,21 +41,22 @@ const LoginSignup = () => {
       if (error) throw error;
       if (user) {
         setIsLogin(true);
-        setMessage("Thank you for signing up with RVNBEATS. Please confirm your email to continue.");
+        setMessage(
+          "Thank you for signing up with RVNBEATS. Please confirm your email to continue."
+        );
       }
     } catch (error) {
       setMessage(error.message);
     }
   };
 
-  
   console.log(supabase);
-console.log(supabase.auth);
+  console.log(supabase.auth);
 
   return (
     <div className="login-signup-container">
-    {message && <div className="message-box">{message}</div>}
-    <div className="form-container">
+      {message && <div className="message-box">{message}</div>}
+      <div className="form-container">
         <div className="form-column">
           <div className="form-container">
             <div className="form-header">

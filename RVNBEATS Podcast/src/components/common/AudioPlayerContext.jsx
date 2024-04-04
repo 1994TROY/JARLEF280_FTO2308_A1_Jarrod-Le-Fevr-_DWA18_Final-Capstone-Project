@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
 const AudioPlayerContext = createContext();
 
@@ -19,7 +19,9 @@ export const AudioPlayerProvider = ({ children }) => {
   };
 
   return (
-    <AudioPlayerContext.Provider value={{ audioDetails, playEpisode, stopEpisode }}>
+    <AudioPlayerContext.Provider
+      value={{ audioDetails, playEpisode, stopEpisode }}
+    >
       {children}
     </AudioPlayerContext.Provider>
   );
