@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Fav.css";
 
 const supabaseUrl = "https://cocqkidcedhuvtidhbgt.supabase.co";
-const supabaseAnonKey = "YOUR_SUPABASE_ANON_KEY"; //As soon as I add the key, my code crashes
+const supabaseAnonKey = "YOUR_SUPABASE_ANON_KEY";      //As soon as I add the key, my code crashes
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Fav = () => {

@@ -15,7 +15,6 @@ Welcome to **RVNBEAT**, the ultimate Podcast listening experience where you can 
     - [Listening to Podcasts](#listening-to-podcasts)
     - [Searching for Podcasts](#searching-for-podcasts)
     - [Managing Favorites](#managing-favorites)
-  - [Contributing 🤝](#contributing-)
   - [Contact 📮](#contact-)
 
 ## Accessing RVNBEAT 🌐
@@ -59,13 +58,9 @@ RVNBEAT is a web-based application and does not require installation. Simply vis
 1. To add a podcast to your favorites, click on the "Add to Favorites" button while listening.
 2. Access your favorites list from the main menu for quick and easy playback.
 
-## Contributing 🤝
-
-We welcome contributions to RVNBEAT! If you have suggestions for improvements or new features, please feel free to [open an issue](https://github.com/1994TROY/JARLEF280_FTO2308_A1_Jarrod-Le-Fevr-_DWA18_Final-Capstone-Project/issues) or submit a pull request.
-
 
 ## Contact 📮
 
-RVNBEAT Team - [Your Contact Information]
+RVNBEAT Team - Jarrod Le Fevré
 
 Project Link: [https://github.com/1994TROY/JARLEF280_FTO2308_A1_Jarrod-Le-Fevr-_DWA18_Final-Capstone-Project](https://github.com/1994TROY/JARLEF280_FTO2308_A1_Jarrod-Le-Fevr-_DWA18_Final-Capstone-Project)
